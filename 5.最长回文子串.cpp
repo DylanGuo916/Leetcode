@@ -21,7 +21,9 @@ public:
 
       int maxLen = 1;
       int begin = 0;
+      // L为字符串长度，最短为2，最长为父串长度
       for (int L = 2; L <= n; ++L) {
+        //遍历父串，确定子串头部
         for (int i = 0; i < n; ++i) {
           int j = i + L - 1;
           if (j >= n)

@@ -19,35 +19,35 @@
 #include <vector>
 #include <queue>
 using namespace std;
-//BFS
-// class Solution {
-// public:
-//     vector<vector<int> > levelOrder(TreeNode* root) {
-//         vector<vector<int> > res;
-//         if (root == nullptr)
-//             return res;
+// BFS
+class Solution {
+public:
+    vector<vector<int> > levelOrder(TreeNode* root) {
+        vector<vector<int> > res;
+        if (!root)
+            return res;
 
-//         queue<TreeNode*> myQueue;
-//         myQueue.push(root);
+        queue<TreeNode*> nodeQueue;
+        nodeQueue.push(root);
 
-//         while(!myQueue.empty()){
-//             int levelSize = myQueue.size(); 
-//             vector<int> currLevel;
+        while(!nodeQueue.empty()){
+            int levelSize = nodeQueue.size(); 
+            vector<int> currLevel;
 
-//             for (int i = 0; i < levelSize; ++i){
-//                 TreeNode* currNode = myQueue.front();
-//                 myQueue.pop();
-//                 currLevel.push_back(currNode->val);
-//                 if (currNode->left)
-//                     myQueue.push(currNode->left);
-//                 if (currNode->right)
-//                     myQueue.push(currNode->right);
-//             }
-//             res.push_back(currLevel);
-//         }
-//         return res;
-//     }
-// };
+            for (int i = 0; i < levelSize; ++i){
+                TreeNode* currNode = nodeQueue.front();
+                nodeQueue.pop();
+                currLevel.push_back(currNode->val);
+                if (currNode->left)
+                    nodeQueue.push(currNode->left);
+                if (currNode->right)
+                    nodeQueue.push(currNode->right);
+            }
+            res.push_back(currLevel);
+        }
+        return res;
+    }
+};
 
 //DFS
 class Solution {

@@ -6,9 +6,10 @@
 
 // @lc code=start
 class Solution {
+private:
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-
+      }
     }
 };
 // @lc code=end

@@ -17,20 +17,10 @@
  * };
  */
 class Solution {
-private:
-  void _dfs(TreeNode* node) {
-    if (!node)
-      return;
-    if (!node->left && !node->right) {
-      
-    }
-    _dfs(node->left);
-    _dfs(node->right);
-  }
 public:
-    vector<string> binaryTreePaths(TreeNode* root) {
-
-    }
+  vector<string> binaryTreePaths(TreeNode* root) {
+    
+  }
 };
 // @lc code=end
 

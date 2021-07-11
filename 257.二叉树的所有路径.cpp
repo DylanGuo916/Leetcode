@@ -16,10 +16,26 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
+ #include <vector>
+ #include <string>
 class Solution {
 public:
+  void construct_path(TreeNode* root, string path, vector<string>& paths) {
+    if (root != nullptr) {
+      path += to_string(root->val);
+      if (root->left == nullptr && root->right == nullptr) {
+        paths.push_back(path);
+      } else {
+        path += "->";
+        construct_path(root->left, path, paths);
+        construct_path(root->right, path, paths);
+      }
+    }
+  }
   vector<string> binaryTreePaths(TreeNode* root) {
-    
+    vector<string> paths;
+    construct_path(root, "", paths);
+    return paths;
   }
 };
 // @lc code=end

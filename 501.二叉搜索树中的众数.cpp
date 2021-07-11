@@ -18,25 +18,38 @@
  */
 class Solution {
 public:
-  vector<int> inorder;
+  vector<int> answer;
+  int base, count, maxCount;
 
-  void travel(TreeNode* root, vector<int>& inorder) {
-    if (root == nullptr)
-      return;
-    travel(root->left, inorder);
-    inorder.push_back(root->val);
-    travel(root->right, inorder);
+  void update(int x) {
+    if (x == base) {
+      ++count;
+    } else {
+      count = 1;
+      base = x;
+    }
+    if (count == maxCount) {
+      answer.push_back(base);
+    }
+    if (count > maxCount) {
+      maxCount = count;
+      answer = vector<int>{base};
+    }
   }
 
-  vector<int> findMode(TreeNode* root) {
-    vector<int> res;
-    if (root == nullptr)
-      return res;
-    travel(root, inorder);
-    
-    return res;
+  void dfs(TreeNode *o) {
+    if (!o) {
+      return;
+    }
+    dfs(o->left);
+    update(o->val);
+    dfs(o->right);
+  }
+
+  vector<int> findMode(TreeNode *root) {
+    dfs(root);
+    return answer;
   }
 };
 
 // @lc code=end
-

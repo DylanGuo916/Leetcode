@@ -9,21 +9,21 @@ class Solution {
 private:
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
+      sort(begin(nums), end(nums));
+      const int n = nums.size();
       vector<vector<int>> ans;
-      sort(nums.begin(), nums.end());
-      for (int i = 0; i < nums.size(); ++i) {
-        while (1) {
-          int l = i + 1;
-          int r = nums.size() - 1;
-          if (l >= r)
-            break;
-          if (nums[l] + nums[r] + nums[i] == 0) {
-            vector<int> tmp{nums[l], nums[r], nums[i]};
-            ans.push_back(tmp);
-          } else if (nums[l] + nums[r] + nums[i] < 0) {
-            ++l;
-          } else {
-            --r;
+      for (int i = 0; i < n; ++i) {
+        if (i && nums[i] == nums[i - 1]) continue;
+        int j = i + 1, k = n - 1;
+        while (j < k) {
+          if (nums[j] + nums[k] > -nums[i]) --k;
+          else if (nums[j] + nums[k] < -nums[i]) ++j;
+          else {
+            ans.push_back({nums[i], nums[j], nums[k]});
+            while (j < k && nums[j] == nums[j + 1]) ++j;
+            while (j < k && nums[k] == nums[k - 1]) --k;
+            ++j;
+            --k;
           }
         }
       }

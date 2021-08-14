@@ -10,9 +10,6 @@ using namespace std;
 class Solution {
 public:
     int findUnsortedSubarray(vector<int>& nums) {
-      vector<int> snums(nums.begin(), nums.end());
-      sort(snums.begin(), snums.end());
-      int start = snums.size();
       
     }
 };

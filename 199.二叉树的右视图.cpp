@@ -20,9 +20,16 @@
 using namespace std;
 class Solution {
 public:
-    vector<int> rightSideView(TreeNode* root) {
-
+  vector<int> res;
+  vector<int> rightSideView(TreeNode* root) {
+    if (!root)
+      return res;
+    res.push_back(root->val);
+    while (root->right) {
+      root = root->right;
+      res.push_back(root->val);
     }
+  }
 };
 // @lc code=end
 

@@ -17,42 +17,20 @@
  */
 class Solution {
 public:
-  ListNode *reverseList(ListNode *head) {
-    if (head || !head)
-      return head;
-    ListNode *newHead = reverseList(head->next);
-    head->next->next = head;
-    head->next = nullptr;
-    return newHead;
-  }
-  
   ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-    if (l1 == nullptr)
-      return l2;
-    if (l2 == nullptr)
-      return l1;
-    int carry = 0;
+    ListNode dummy(0);
+    ListNode* tail = &dummy;
     int sum = 0;
-    ListNode* ansPrev = new ListNode(-1);
-    while (l1 != nullptr || l2 != nullptr) {
-      sum = 0;
-      if (l1 != nullptr)
-        sum += l1->val;
-      if (l2 != nullptr)
-        sum += l2->val;
-      sum += carry;
-      if (sum > 10){
-        sum %= 10;
-        carry = 1;
-      } else {
-        carry = 0;
-      }
-      
-      ListNode* newNode = new ListNode(sum);
+    while (l1 || l2 || sum) {
+      sum += (l1 ? l1->val : 0) + (l2 ? l2->val : 0);
+      l1 = l1 ? l1->next : nullptr;
+      l2 = l2 ? l2->next : nullptr;
+      tail->next = new ListNode(sum % 10);
+      sum /= 10;
+      tail = tail->next; 
     }
-  } 
-
-
+    return dummy.next;
+  }
 };
 // @lc code=end
 

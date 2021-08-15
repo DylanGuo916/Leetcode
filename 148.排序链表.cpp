@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=21 lang=cpp
+ * @lc app=leetcode.cn id=148 lang=cpp
  *
- * [21] 合并两个有序链表
+ * [148] 排序链表
  */
 
 // @lc code=start
@@ -17,9 +17,22 @@
  */
 class Solution {
 public:
-  ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
+  ListNode *sortList(ListNode *head) {
+    if (!head || !head->next) return head;
+    ListNode* slow = head;
+    ListNode* fast = head->next;
+    while (fast && fast->next) {
+      fast = fast->next->next;
+      slow = slow->next;
+    }
+    ListNode* mid = slow->next;
+    slow->next = nullptr;
+    return mergeTwoList(sortList(head), sortList(mid));
+  }
+
+  ListNode *mergeTwoList(ListNode *l1, ListNode *l2) {
     ListNode dummy(0);
-    ListNode *tail = &dummy;
+    ListNode* tail = &dummy;
     while (l1 && l2) {
       if (l1->val <= l2->val) {
         tail->next = l1;
@@ -30,9 +43,9 @@ public:
       }
       tail = tail->next;
     }
-    tail->next = l1 ? l1 : l2;
+    if (l1) tail->next = l1;
+    if (l2) tail->next = l2;
     return dummy.next;
   }
 };
 // @lc code=end
-

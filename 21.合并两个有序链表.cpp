@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=23 lang=cpp
+ * @lc app=leetcode.cn id=21 lang=cpp
  *
- * [23] 合并K个升序链表
+ * [21] 合并两个有序链表
  */
 
 // @lc code=start
@@ -17,20 +17,6 @@
  */
 class Solution {
 public:
-  ListNode* mergeKLists(vector<ListNode*>& lists) {
-    return merge(lists, 0, lists.size() - 1);
-  }
-private:
-  ListNode* merge(vector<ListNode*>& lists, int l, int r) {
-    if (l > r) return nullptr;
-    if (l == r) return lists[l];
-    if (l + 1 == r) return mergeTwoLists(lists[l], lists[r]);
-    int mid = l + (r - l) / 2;
-    auto l1 = merge(lists, l, mid);
-    auto l2 = merge(lists, mid + 1, r);
-    return mergeTwoLists(l1, l2);
-  }
-
   ListNode *mergeTwoLists(ListNode *l1, ListNode *l2) {
     ListNode dummy(0);
     ListNode *tail = &dummy;

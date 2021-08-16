@@ -7,9 +7,9 @@
 // @lc code=start
 class Solution {
 public:
-    int calculate(string s) {
-
-    }
+  int calculate(string s) {
+    
+  }
 };
 // @lc code=end
 

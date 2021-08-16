@@ -45,7 +45,6 @@ private:
   list<pair<int, int>> m_cache;
   unordered_map<int, list<pair<int, int>>::iterator> m_hashtable;
 };
-
 /**
  * Your LRUCache object will be instantiated and called as such:
  * LRUCache* obj = new LRUCache(capacity);
